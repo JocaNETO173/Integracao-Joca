@@ -39,7 +39,7 @@ def criar_cadastro():
         transporte = conectar.cursor()
 
         query = "INSERT INTO cliente1 (CPF, PRIMEIRO_NOME, SOBRENOME, IDADE) VALUES (%s, %s, %s, %s)"
-        transporte.execute(query(cpf, primeiro_nome, sobrenome, idade))
+        transporte.execute(query, (cpf, primeiro_nome, sobrenome, idade))
         # salva alteração
         transporte.commit()
         # fecha o cursor
