@@ -48,3 +48,6 @@ def criar_cadastro():
         conectar.close()
     except mysql.connector.Error as err:
         return f"Erro ao gravar no Banco: {err}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
