@@ -12,7 +12,8 @@ bd_config = {
     'host': 'localhost',
     'user': 'root',
     'password': 'escola',
-    'database': 'cadastro1'
+    'database': 'cadastro1',
+    'ssl_disabled': True
 }
 
 # Criação de rota para o arquivo HTML principal
@@ -41,11 +42,12 @@ def criar_cadastro():
         query = "INSERT INTO cliente1 (CPF, PRIMEIRO_NOME, SOBRENOME, IDADE) VALUES (%s, %s, %s, %s)"
         transporte.execute(query, (cpf, primeiro_nome, sobrenome, idade))
         # salva alteração
-        transporte.commit()
+        conectar.commit()
         # fecha o cursor
         transporte.close()
         # fecha a conexão do banco de dados
         conectar.close()
+        return f"<h3>Cliente {primeiro_nome} cadastrado com sucesso!</h3><a href='/'>Retornar</a>"
     except mysql.connector.Error as err:
         return f"Erro ao gravar no Banco: {err}"
 
