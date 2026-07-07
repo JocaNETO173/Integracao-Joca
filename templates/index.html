@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Clientes</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <h1>Cadastro de Cliente</h1>
-    <form action="/cadastrar", method="POST">
+    <form action="/cadastrar" , method="POST">
         <label for="c_cpf">CPF</label>
         <input type="text" name="cpf" id="c_cpf" required>
 
@@ -25,7 +27,7 @@
     </form>
 
     <h2>Tabela de Clientes</h2>
-    <table border='1'>
+    <table border="1">
         <thead>
             <tr>
                 <th>CPF</th>
@@ -34,8 +36,19 @@
                 <th>Idade</th>
                 <th>Ações</th>
             </tr>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{cliente.CPF}}</td>
+                    <td>{{cliente.PRIMEIRO_NOME}}</td>
+                    <td>{{cliente.SOBRENOME}}</td>
+                    <td>{{cliente.IDADE}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
         </thead>
 
     </table>
 </body>
+
 </html>
