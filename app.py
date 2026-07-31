@@ -21,7 +21,21 @@ bd_config = {
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    try:
+        conexaoIndex = mysql.connector.connect(**bd_config)
+        transporteIndex = conexaoIndex.cursor(dictionary=True)
+
+        transporteIndex.execute("SELECT * FROM cliente1")
+        listaClientes = transporteIndex.fetchall()
+
+        transporteIndex.close()
+        conexaoIndex.close()
+
+        return render_template('index.html', clientes=listaClientes)
+
+    except mysql.connector.Error as err:
+        return f"Erro ao carregar a lista: {err}"
+    
 
 
 @app.route('/cadastrar', methods=['POST'])
