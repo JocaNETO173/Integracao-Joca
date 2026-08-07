@@ -2,7 +2,7 @@
 # import do render_template para a leitura HTML
 # request para captura de dados
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, redirect, url_for, request
 # biblioteca para criar conexão com mysql
 import mysql.connector
 
@@ -62,6 +62,25 @@ def criar_cadastro():
         # fecha a conexão do banco de dados
         conectar.close()
         return f"<h3>Cliente {primeiro_nome} cadastrado com sucesso!</h3><a href='/'>Retornar</a>"
+    except mysql.connector.Error as err:
+        return f"Erro ao gravar no Banco: {err}"
+
+@app.route('/excluir/<cpf>')
+def excluir(cpf):
+    try:
+        conectar = mysql.connector.connect(**bd_config)
+
+        # Leva as instruções do SQl do Python até o banco de dados
+        transporte = conectar.cursor()
+
+        transporte.execute("DELETE FROM cliente1 WHERE CPF = %s", (cpf,))
+        # salva alteração
+        conectar.commit()
+        # fecha o cursor
+        transporte.close()
+        # fecha a conexão do banco de dados
+        conectar.close()
+        return redirect(url_for('index'))
     except mysql.connector.Error as err:
         return f"Erro ao gravar no Banco: {err}"
 
