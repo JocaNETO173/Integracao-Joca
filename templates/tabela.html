@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Tabela dos Clientes</title>
+</head>
+<body>
+    <h2>Tabela de Clientes</h2>
+    <table border="1" style="background-color: #e0e0e0; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0, 0.1); border: solid rgb(184, 184, 184);">
+        <thead>
+            <tr>
+                <th>CPF</th>
+                <th>Primeiro Nome</th>
+                <th>Sobrenome</th>
+                <th>Idade</th>
+                <th>Ações</th>
+            </tr>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.CPF }}</td>
+                    <td>{{ cliente.PRIMEIRO_NOME }}</td>
+                    <td>{{ cliente.SOBRENOME }}</td>
+                    <td>{{ cliente.IDADE }}</td>
+                    <td>
+                        <a href="{{ url_for('excluir', cpf=cliente.CPF) }}" onclick="return confirm('Confirmar Exclusão?')">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </thead>
+
+    </table>
+    <a class="retornar" href="/">Retornar a Página Principal.</a>
+</body>
+</html>

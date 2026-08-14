@@ -1,5 +1,6 @@
 body{
-    background: #000000 url(20190410044927.jpg);
+    background: #000000 url(windowsxp.jpg);
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,6 +17,55 @@ form{
     width: 300px;
     border: solid rgb(184, 184, 184);
 }
+
+.button-group{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.btn {
+
+    text-decoration: none;
+    color: white;
+    text-shadow: 1px 1px 0 black;
+    font-weight: bolder;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.btn-add {
+    background-color: rgb(88, 199, 93);
+}
+
+.btn-remove{
+    background-color: #c54141;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: #e0e0e0;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0, 0.1);
+    width: 300px;
+    border: solid rgb(184, 184, 184);
+    align-items: center;
+}
+
+.container p{
+    font-weight: bolder;
+}
+
+.retornar {
+    text-decoration: none;
+    margin-top: 20px;
+    background-color: #e0e0e0;
+    padding: 15px;
+    border: solid rgb(184, 184, 184);
+}
+
 
 h1{
     text-align: center;

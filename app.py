@@ -16,11 +16,17 @@ bd_config = {
     'ssl_disabled': True
 }
 
-# Criação de rota para o arquivo HTML principal
-
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/formulario')
+def exibirForm():
+    return render_template('cadastro.html')
+
+@app.route('/clientes')
+def exibirTabela():
     try:
         conexaoIndex = mysql.connector.connect(**bd_config)
         transporteIndex = conexaoIndex.cursor(dictionary=True)
@@ -31,10 +37,17 @@ def index():
         transporteIndex.close()
         conexaoIndex.close()
 
-        return render_template('index.html', clientes=listaClientes)
+        return render_template('tabela.html', clientes=listaClientes)
 
     except mysql.connector.Error as err:
         return f"Erro ao carregar a lista: {err}"
+
+# Criação de rota para o arquivo HTML principal
+
+
+# @app.route('/')
+# def index():
+    
     
 
 
@@ -61,7 +74,7 @@ def criar_cadastro():
         transporte.close()
         # fecha a conexão do banco de dados
         conectar.close()
-        return f"<h3>Cliente {primeiro_nome} cadastrado com sucesso!</h3><a href='/'>Retornar</a>"
+        return redirect(url_for('exibirForm'))
     except mysql.connector.Error as err:
         return f"Erro ao gravar no Banco: {err}"
 
